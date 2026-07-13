@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const API_URI = "https://task-manager-mern-1-i5bs.onrender.com/";
-
+const API_URI = "https://task-manager-backend-55d2.onrender.com/api";
 const baseQuery = fetchBaseQuery({
   baseUrl: API_URI,
   prepareHeaders: (headers) => {

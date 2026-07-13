@@ -198,7 +198,7 @@ export const dashboardData = async (req, res) => {
       ).length;
   
       const inProgressTasks = tasks.filter(
-        (task) => task.status === "in progress"
+        (task) => task.status === "in-progress"
       ).length;
   
       res.status(200).json({
@@ -217,7 +217,7 @@ export const dashboardData = async (req, res) => {
       });
     }
   };
-  // Task Statistics
+ // Task Statistics
 export const taskStatistics = async (req, res) => {
     try {
       const tasks = await Task.find({ user: req.user._id });
@@ -236,7 +236,7 @@ export const taskStatistics = async (req, res) => {
         // Status Count
         if (task.status === "pending") stats.pending++;
         if (task.status === "completed") stats.completed++;
-        if (task.status === "in progress") stats.inProgress++;
+        if (task.status === "in-progress") stats.inProgress++;
   
         // Priority Count
         if (task.priority === "high") stats.high++;

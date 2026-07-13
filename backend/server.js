@@ -8,6 +8,9 @@ import {
     notFound,
     errorHandler,
   } from "./middleware/errormiddleware.js";
+  import helmet from "helmet";
+  import morgan from "morgan";
+  import rateLimit from "express-rate-limit";
 
 
 dotenv.config();
@@ -19,6 +22,10 @@ const app = express();
 
 // Middleware
 app.use(cors());
+app.use(cors());
+app.use(helmet());
+app.use(morgan("dev"));
+app.use(express.json());
 app.use(express.json());
 
 // Debug Middleware (Temporary)
@@ -55,3 +62,13 @@ const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: {
+      success: false,
+      message: "Too many requests. Please try again later.",
+    },
+  });
+  
+  app.use(limiter);
